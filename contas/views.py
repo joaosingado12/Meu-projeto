@@ -4,9 +4,11 @@ import datetime
 
 def home(request):
     now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" %now
+    html = "<html><body>It is now %s.</body></html>" % now
     return HttpResponse(html)
 
 def teste(request):
-    return render(request, 'index.html')
+    date = {}
+    date['now'] = datetime.datetime.now()
+    return render(request, 'index.html', date)
 # Create your views here.
