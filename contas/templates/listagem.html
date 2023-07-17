@@ -7,9 +7,10 @@
 </head>
 <body>
     <h1><b>Seja Bem-Vindo</b></h1>
-    <ul>{% for i in transacoes %}
-            {{ i }}
+    <ul>{% for transacao in transacoes %}
+            <li>{{ transacao.descricao }} - {{transacao.valor}} - {{transacao.categoria}}</li>
         {% endfor %}
     </ul>
+    <button><a href="{% url 'url_nova'%}">Novo</a></button>
 </body>
 </html>
