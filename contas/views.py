@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import datetime
 from .models import Transacao
@@ -28,8 +28,24 @@ def nova_transacao(request):
 
     if form.is_valid():
         form.save()
-        return listagem(request)
+        return redirect('url_listagem')
     data = {}
     data['form'] = form
     return render(request, 'form.html', data)
+
+def update(request, pk):
+    transacao = Transacao.objects.get(pk=pk)
+    form = TransacaoForm(request.POST or None, instance=transacao)
+    data = {}
+    if form.is_valid():
+        form.save()
+        return redirect('url_listagem')
+    data['form'] = form
+    data['transacao'] = transacao
+    return render(request, 'form.html', data)
+
+def delete(request, pk):
+    transacao = Transacao.objects.get(pk=pk)
+    transacao.delete()
+    return redirect('url_listagem')
 # Create your views here.

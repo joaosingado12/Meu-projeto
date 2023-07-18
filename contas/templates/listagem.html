@@ -8,7 +8,7 @@
 <body>
     <h1><b>Seja Bem-Vindo</b></h1>
     <ul>{% for transacao in transacoes %}
-            <li>{{ transacao.descricao }} - {{transacao.valor}} - {{transacao.categoria}}</li>
+            <li>{{ transacao.descricao }} - {{transacao.valor}} - {{transacao.categoria}} -  <button><a href="{% url 'url_update' transacao.id %}">Editar</a></button></li>
         {% endfor %}
     </ul>
     <button><a href="{% url 'url_nova'%}">Novo</a></button>
